@@ -110,7 +110,7 @@ export default function HybridEntry() {
             <h3 className="text-xl font-semibold mb-4">🔄 Augmentation</h3>
             <p>
               Augmentation is used to artificially expand the dataset by applying transformations like horizontal flip, 
-              brightness variation, rotation, zooming, shearing, noise addition, and stretching. This improves the model's 
+              brightness variation, rotation, zooming, shearing, noise addition, and stretching. This improves the model 
               robustness and generalization ability.
             </p>
           </motion.div>
@@ -155,7 +155,7 @@ export default function HybridEntry() {
           >
             <h3 className="text-xl font-semibold mb-4">⚖️ Evaluation</h3>
             <p>
-              The final step is evaluating the model’s performance based on metrics such as accuracy, precision, recall,
+              The final step is evaluating the model performance based on metrics such as accuracy, precision, recall,
               and F1-score. We assess the model's ability to classify both binary and multiclass TIRADS labels.
             </p>
           </motion.div>
