@@ -156,7 +156,7 @@ export default function HybridEntry() {
             <h3 className="text-xl font-semibold mb-4">⚖️ Evaluation</h3>
             <p>
               The final step is evaluating the model performance based on metrics such as accuracy, precision, recall,
-              and F1-score. We assess the model's ability to classify both binary and multiclass TIRADS labels.
+              and F1-score. We assess the model ability to classify both binary and multiclass TIRADS labels.
             </p>
           </motion.div>
         )}
