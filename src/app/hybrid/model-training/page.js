@@ -1,27 +1,35 @@
 "use client";
+import { pipe } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
 // Replace this URL with your actual CSV image or keep placeholder
 const csvIconURL = '/csv.png'
 // Constants for animation and pipeline
-const PACKET_COUNT = 60; // Number of packets circulating
-const STREAM_SPEED = 0.008; // Speed of packet progress (0 to 1 per frame)
+const PACKET_COUNT = 30; // Number of packets circulating
+const STREAM_SPEED = 0.01; // Speed of packet progress (0 to 1 per frame)
 const TOTAL_PHASES = 10; // Total animation phases for packets
 
 // Define the pipeline phases for train steps and ML models
 const PHASES_TRAIN_PIPELINE = ['adasyn', 'scaling', 'selectkbest', 'calibration'];
 const PHASES_MODELS = ['rf', 'dt', 'svm', 'xgb'];
 
+
 // Colors for different nodes and packets
 const colors = {
   root: '#2563eb',       // Blue for CSV root and split
-  test: '#6b7280',       // Gray for test data branch
+  pipeline: '#6b7280',   // Bright blue for pipeline lines
+  test: '#00B4D8',       // Gray for test data branch
   adasyn: '#f97316',     // Orange
   scaling: '#10b981',    // Green
   selectkbest: '#8b5cf6',// Purple
   calibration: '#ef4444',// Red
   train: '#3b82f6',      // Bright blue for train pipeline lines
   model: '#4b5563',      // Dark gray for models
+  evaluate: '#4CAF50',  // Yellow for evaluation
+  rf: '#2A9D8F',
+  dt: '#E76F51',
+  svm: '#F9C74F',
+  xgb: '#B5179E',
 };
 
 // Positioning of nodes in vertical layout (top to bottom)
@@ -31,16 +39,16 @@ const nodes = {
   testBranch: { x: 100, y: 220 },
   testEnd: { x: 100, y: 320 },
   trainStages: [
-    { x: 280, y: 160, name: 'adasyn' },
-    { x: 280, y: 220, name: 'scaling' },
-    { x: 280, y: 280, name: 'selectkbest' },
-    { x: 280, y: 340, name: 'calibration' },
+    { x: 280, y: 170, name: 'adasyn' },
+    { x: 280, y: 240, name: 'scaling' },
+    { x: 280, y: 320, name: 'selectkbest' },
+    { x: 280, y: 400, name: 'calibration' },
   ],
   models: [
-    { x: 460, y: 220, name: 'rf' },
-    { x: 520, y: 280, name: 'dt' },
-    { x: 580, y: 340, name: 'svm' },
-    { x: 640, y: 400, name: 'xgb' },
+    { x: 460, y: 200, name: 'rf' },
+    { x: 520, y: 240, name: 'dt' },
+    { x: 580, y: 300, name: 'svm' },
+    { x: 640, y: 350, name: 'xgb' },
   ],
 };
 
@@ -92,7 +100,7 @@ function PacketShape({ phase, x, y }) {
     case 'svm':
     case 'xgb':
       // Ellipse for model nodes
-      return <ellipse cx={x} cy={y} rx={half + 3} ry={half} fill={colors.model} />;
+      return  null;
     default:
       // Default rectangle
       return <rect x={x - half} y={y - half} width={size} height={size} fill={colors.root} rx={3} ry={3} />;
@@ -262,9 +270,7 @@ width={48}
 height={48}
 style={{ filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.15))' }}
 />
-<text x={x} y={y + 38} textAnchor="middle" fontSize="14" fill={colors.root} fontWeight="bold">
-CSV File
-</text>
+
 </>
 );
 }
@@ -283,87 +289,185 @@ return (
 <svg
 viewBox="0 0 720 480"
 style={{
-width: '720px',
-height: '480px',
+width: '100%',
+height: '90vh',
 background: '#f0f4f8',
 borderRadius: '12px',
 boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
+marginBlock: '20px',
+padding: '10px',
+overflow: 'hidden',
 }}
 >
 {/* Root node */}
 {renderNode('root', nodes.root.x, nodes.root.y)}
 
-  {/* Split node */}
-  <circle cx={nodes.split.x} cy={nodes.split.y} r={10} fill={colors.root} />
-  <text
-    x={nodes.split.x}
-    y={nodes.split.y + 25}
-    textAnchor="middle"
-    fontSize="12"
-    fill={colors.root}
-    fontWeight="600"
-  >
-    Split
-  </text>
+{/* Split Node - "Train" */}
+{(() => {
+  const name = "Train";
+  const fontSize = 14;
+  const paddingX = 10;
+  const paddingY = 6;
+  const textWidth = name.length * 8;
+  const width = textWidth + paddingX * 2;
+  const height = fontSize + paddingY * 2;
+  const { x, y } = nodes.split;
 
-  {/* Test branch nodes */}
-  <circle cx={nodes.testBranch.x} cy={nodes.testBranch.y} r={12} fill={colors.test} />
-  <text
-    x={nodes.testBranch.x}
-    y={nodes.testBranch.y + 25}
-    textAnchor="middle"
-    fontSize="13"
-    fill={colors.test}
-    fontWeight="600"
-  >
-    Test
-  </text>
-  <circle cx={nodes.testEnd.x} cy={nodes.testEnd.y} r={12} fill={colors.test} />
-  <text
-    x={nodes.testEnd.x}
-    y={nodes.testEnd.y + 25}
-    textAnchor="middle"
-    fontSize="13"
-    fill={colors.test}
-    fontWeight="600"
-  >
-    Evaluate
-  </text>
-
-  {/* Train pipeline stages */}
-  {nodes.trainStages.map(({ x, y, name }) => (
-    <g key={name}>
-      <circle cx={x} cy={y} r={14} fill={colors[name]} />
+  return (
+    <g>
+      <rect
+        x={x - width / 2}
+        y={y - height / 2}
+        width={width}
+        height={height}
+        rx={10}
+        ry={10}
+        fill={colors.root}
+      />
       <text
         x={x}
-        y={y + 5}
+        y={y + fontSize / 3}
         textAnchor="middle"
-        fontSize="12"
-        fill="white"
-        style={{ userSelect: 'none', fontWeight: 'bold' }}
-      >
-        {name.toUpperCase()}
-      </text>
-    </g>
-  ))}
-
-  {/* Model nodes */}
-  {nodes.models.map(({ x, y, name }) => (
-    <g key={name}>
-      <ellipse cx={x} cy={y} rx={20} ry={14} fill={colors.model} />
-      <text
-        x={x}
-        y={y + 5}
-        textAnchor="middle"
-        fontSize="13"
+        fontSize={fontSize}
         fill="white"
         fontWeight="bold"
         style={{ userSelect: 'none' }}
       >
-        {name.toUpperCase()}
+        {name}
       </text>
     </g>
-  ))}
+  );
+})()}
+
+{/* Test Branch Node - "Test" */}
+{(() => {
+  const name = "Test";
+  const fontSize = 13;
+  const paddingX = 10;
+  const paddingY = 5;
+  const textWidth = name.length * 8;
+  const width = textWidth + paddingX * 2;
+  const height = fontSize + paddingY * 2;
+  const { x, y } = nodes.testBranch;
+
+  return (
+    <g>
+      <rect
+        x={x - width / 2}
+        y={y - height / 2}
+        width={width}
+        height={height}
+        rx={10}
+        ry={10}
+        fill={colors.test}
+      />
+      <text
+        x={x}
+        y={y + fontSize / 3}
+        textAnchor="middle"
+        fontSize={fontSize}
+        fill="white"
+        fontWeight="bold"
+        style={{ userSelect: 'none' }}
+      >
+        {name}
+      </text>
+    </g>
+  );
+})()}
+
+{/* Test End Node - "Evaluate" */}
+{(() => {
+  const name = "Evaluate";
+  const fontSize = 13;
+  const paddingX = 12;
+  const paddingY = 5;
+  const textWidth = name.length * 8;
+  const width = textWidth + paddingX * 2;
+  const height = fontSize + paddingY * 2;
+  const { x, y } = nodes.testEnd;
+
+  return (
+    <g>
+      <rect
+        x={x - width / 2}
+        y={y - height / 2}
+        width={width}
+        height={height}
+        rx={10}
+        ry={10}
+        fill={colors.evaluate}
+      />
+      <text
+        x={x}
+        y={y + fontSize / 3}
+        textAnchor="middle"
+        fontSize={fontSize}
+        fill="white"
+        fontWeight="bold"
+        style={{ userSelect: 'none' }}
+      >
+        {name}
+      </text>
+    </g>
+  );
+})()}
+
+
+  {nodes.trainStages.map(({ x, y, name }) => {
+  const paddingX = 10;
+  const paddingY = 6;
+  const fontSize = 14;
+  const textWidth = name.length * 8; // Approximate width per character
+  const rectWidth = textWidth + paddingX * 2;
+  const rectHeight = fontSize + paddingY * 2;
+
+  return (
+    <g key={name}>
+      {/* Rounded rectangle */}
+      <rect
+        x={x - rectWidth / 2}
+        y={y - rectHeight / 2}
+        width={rectWidth}
+        height={rectHeight}
+        rx={10}
+        ry={10}
+        fill={colors[name]}
+      />
+      {/* Centered text */}
+      <text
+        x={x}
+        y={y + fontSize / 3} // Vertically center text
+        textAnchor="middle"
+        fontSize={fontSize}
+        fill="white"
+        style={{ userSelect: 'none', fontWeight: 'bold' }}
+      >
+        {name}
+      </text>
+    </g>
+  );
+})}
+
+
+  {/* Model nodes */}
+{nodes.models.map(({ x, y, name }) => (
+  <g key={name}>
+    <ellipse cx={x} cy={y} rx={20} ry={14} fill={colors[name]} />
+    <text
+      x={x}
+      y={y + 5}
+      textAnchor="middle"
+      fontSize="13"
+      fill="white"
+      fontWeight="bold"
+      style={{ userSelect: 'none' }}
+    >
+      {name.toUpperCase()}
+    </text>
+  </g>
+))}
+
 
   {/* Connections: vertical lines */}
   {/* Root to split */}
@@ -372,7 +476,7 @@ boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
     y1={nodes.root.y + 24}
     x2={nodes.split.x}
     y2={nodes.split.y - 10}
-    stroke={colors.root}
+    stroke={colors.pipeline}
     strokeWidth={3}
     strokeLinecap="round"
   />
@@ -383,7 +487,7 @@ boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
     y1={nodes.split.y + 10}
     x2={nodes.trainStages[0].x}
     y2={nodes.trainStages[0].y - 15}
-    stroke={colors.train}
+    stroke={colors.pipeline}
     strokeWidth={3}
     strokeLinecap="round"
   />
@@ -398,7 +502,7 @@ boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
         y1={node.y + 15}
         x2={nodes.trainStages[i + 1].x}
         y2={nodes.trainStages[i + 1].y - 15}
-        stroke={colors.train}
+        stroke={colors.pipeline}
         strokeWidth={3}
         strokeLinecap="round"
       />
@@ -407,12 +511,17 @@ boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
 
   {/* Split to test branch (left and down) */}
   <polyline
-    points={`${nodes.split.x},${nodes.split.y} ${nodes.testBranch.x},${nodes.split.y} ${nodes.testBranch.x},${nodes.testBranch.y}`}
+    points={`
+      ${nodes.split.x},${nodes.split.y + 20}
+      ${nodes.testBranch.x},${nodes.split.y + 20}
+      ${nodes.testBranch.x},${nodes.testBranch.y - 13}
+    `}
     fill="none"
-    stroke={colors.test}
+    stroke={colors.pipeline}
     strokeWidth={3}
     strokeLinecap="round"
   />
+
 
   {/* Test vertical line */}
   <line
@@ -420,48 +529,39 @@ boxShadow: '0 8px 20px rgb(0 0 0 / 0.1)',
     y1={nodes.testBranch.y + 12}
     x2={nodes.testEnd.x}
     y2={nodes.testEnd.y - 12}
-    stroke={colors.test}
+    stroke={colors.pipeline}
     strokeWidth={3}
     strokeLinecap="round"
   />
 
-  {/* Calibration to models horizontal and vertical lines */}
-  {/* Horizontal line from calibration to model start */}
+  {/* Calibration to models horizontal backbone line */}
+
+<line
+  x1={nodes.trainStages[3].x + 55} // Start just outside the right edge of calib node
+  y1={nodes.trainStages[3].y + 0} // Below the node
+  x2={Math.max(...nodes.models.map(m => m.x)) + 0}
+  y2={nodes.trainStages[3].y + 0}
+  stroke={colors.pipeline}
+  strokeWidth={3}
+  strokeLinecap="round"
+/>
+
+{nodes.models.map(({ x, y }) => (
   <line
-    x1={nodes.trainStages[3].x + 20}
-    y1={nodes.trainStages[3].y + 15}
-    x2={nodes.models[0].x - 20}
-    y2={nodes.trainStages[3].y + 15}
-    stroke={colors.train}
+    key={`v-${x}`}
+    x1={x + 0}
+    y1={nodes.trainStages[3].y + 0}
+    x2={x + 0}
+    y2={y + 15} // Just above the model node
+    stroke={colors.pipeline}
     strokeWidth={3}
     strokeLinecap="round"
-  />
-  {/* Vertical lines down to each model */}
-  {nodes.models.map(({ x, y }) => (
-    <line
-      key={x}
-      x1={x - 20}
-      y1={nodes.trainStages[3].y + 15}
-      x2={x - 20}
-      y2={y + 15}
-      stroke={colors.train}
-      strokeWidth={3}
-      strokeLinecap="round"
-    />
-  ))}
-  {/* Horizontal connections to model nodes */}
-  {nodes.models.map(({ x, y }) => (
-    <line
-      key={x + 'h'}
-      x1={x - 20}
-      y1={y + 15}
-      x2={x}
-      y2={y + 15}
-      stroke={colors.train}
-      strokeWidth={3}
-      strokeLinecap="round"
-    />
-  ))}
+/>
+))}
+
+
+
+
 
   {/* Render all packets */}
   {packets.map(({ id, phase, progress }) => (
