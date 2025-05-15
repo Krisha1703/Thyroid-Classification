@@ -46,7 +46,7 @@ export default function HomePage() {
       {/* Centered Main Content */}
       <div className="flex flex-col items-center justify-center text-center space-y-10">
         <h1 className="text-4xl font-bold text-gray-800">Thyroid Nodule Classification Simulation</h1>
-        <div className="flex gap-6 w-1/2">
+        <div className="flex gap-4 w-full">
         <motion.button
           whileHover={{ scale: 1.05, x: 5 }}
           whileTap={{ scale: 0.95 }}
@@ -63,6 +63,29 @@ export default function HomePage() {
         >
           🎯 Objective
         </motion.button>
+
+        <motion.a
+          whileHover={{ scale: 1.05, x: 5 }}
+          whileTap={{ scale: 0.95 }}
+          href="https://drive.google.com/file/d/1VX-2VDEAj-mWFzz5LpDjVv_qbSN6PZ4H/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-emerald-500 hover:bg-emerald-600 cursor-pointer text-white px-4 py-2 w-full rounded-2xl shadow-lg transition-all font-medium flex items-center gap-2"
+        >
+          🧾 View Report
+        </motion.a>
+
+        <motion.a
+    whileHover={{ scale: 1.05, x: 5 }}
+    whileTap={{ scale: 0.95 }}
+    href="https://drive.google.com/drive/folders/1D4IArTiPzwnePuxgoDzB4Tdu4JliC80R?usp=sharing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-emerald-500 hover:bg-emerald-600 cursor-pointer text-white px-4 py-2 w-full rounded-2xl shadow-lg transition-all font-medium flex items-center gap-2"
+  >
+    📁 Project Folder
+  </motion.a>
+
       </div>
         <div className="flex flex-col gap-6 w-64">
           <Link href="/pure-ml">
