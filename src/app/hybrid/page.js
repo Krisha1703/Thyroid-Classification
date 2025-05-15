@@ -12,7 +12,7 @@ export default function HybridEntry() {
       <h2 className="md:text-3xl text-xl font-semibold mb-6">Hybrid Modeling Flow</h2>
 
       {/* Interactive Panels */}
-      <div className="flex md:space-x-6 space-y-4 mb-8 md:flex-wrap flex-col justify-center">
+      <div className="flex md:space-x-6 space-x-0 md:space-y-0 space-y-4 mb-8 md:flex-row flex-col justify-center">
         <motion.div
           className="bg-blue-200 rounded-lg p-4 cursor-pointer"
           onClick={() => setActivePanel('dataset')}

@@ -28,6 +28,8 @@ export default function Augmentation() {
 
   const [step, setStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
+  const [showCompletionMessage, setShowCompletionMessage] = useState(false);
+
 
   const handleNext = () => {
     if (!completedSteps.includes(step)) {
@@ -37,11 +39,13 @@ export default function Augmentation() {
     if (step < steps.length - 1) {
       setStep(step + 1);
     } else {
-      alert('Great! We completed augmentation. Next, we move to feature extraction.');
-      router.push('/hybrid/image-feature-extraction');
+      // Show message and redirect after 2 seconds
+      setShowCompletionMessage(true);
+      setTimeout(() => {
+        router.push('/hybrid/image-feature-extraction');
+      }, 2000);
     }
   };
-
 
   const isCurrentStepCompleted = completedSteps.includes(step);
   const scannerColor = isCurrentStepCompleted ? 'bg-green-500' : 'bg-red-500';
@@ -97,8 +101,12 @@ export default function Augmentation() {
         ))}
 
         {/* Step Description */}
-        <div className="mt-6 bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 rounded-md w-full">
-          <p className="text-md">{stepDescriptions[step]}</p>
+        <div className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-full">
+          <p className="text-md">
+            {showCompletionMessage
+              ? "🎉 Great! We completed preprocessing. Next up is Image Feature Extraction..."
+              : stepDescriptions[step]}
+          </p>
         </div>
 
         {/* Next Step Button */}

@@ -22,6 +22,16 @@ export default function ModelSelection() {
   // Feature columns for the table
   const featureColumns = ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'];
 
+const tableData = [
+  [9.1234, -0.19764, 3.76413, -4.0419],
+  [0.69834, 12.2761, -5.61532, 14.1486],
+  [-8.8867, 0.32418, 0.1294, -0.29985],
+  [0.94721, -10.1512, 7.77051, 21.0215],
+  [0.70291, -3.14786, 4.6384, 0.64827],
+];
+
+
+
   // Handle model click
   const handleModelClick = (model) => {
     setSelectedModel(model);
@@ -147,20 +157,21 @@ export default function ModelSelection() {
                 </thead>
                 <tbody>
                   {/* Animation: Filling Table Rows */}
-                  {Array.from({ length: 5 }).map((_, rowIndex) => (
-                    <motion.tr
-                      key={rowIndex}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 3 + rowIndex * 2, duration: 1 }}
-                    >
-                      {Array.from({ length: 4 }).map((_, colIndex) => (
-                        <td key={colIndex} className="border px-4 py-2 text-center">
-                          {Math.random().toFixed(2)} {/* Random value for feature */}
-                        </td>
-                      ))}
-                    </motion.tr>
-                  ))}
+                  {tableData.map((row, rowIndex) => (
+                      <motion.tr
+                        key={rowIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 3 + rowIndex * 2, duration: 1 }}
+                      >
+                        {row.map((value, colIndex) => (
+                          <td key={colIndex} className="border px-4 py-2 text-center">
+                            {value}
+                          </td>
+                        ))}
+                      </motion.tr>
+                    ))}
+
                 </tbody>
               </motion.table>
             </motion.div>

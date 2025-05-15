@@ -14,7 +14,7 @@ export default function ImagePreprocessing() {
       <h2 className="md:text-3xl text-xl font-semibold mb-6">Image Preprocessing Flow</h2>
 
       {/* Interactive Panels */}
-      <div className="flex md:space-x-6 md:flex-row flex-col space-y-4 mb-8">
+      <div className="flex md:space-x-6 md:flex-row flex-col md:space-y-0 space-x-0 space-y-4 mb-8">
         {/* Panel for Step 1 */}
         <motion.div
           className="bg-blue-200 rounded-lg p-4 cursor-pointer"

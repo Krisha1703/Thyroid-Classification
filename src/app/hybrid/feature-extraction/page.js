@@ -21,11 +21,34 @@ export default function FeaturePreprocessing() {
     'We save the final processed features into a CSV file so they can be used for training the machine learning model.',
   ];
 
+  const originalData = [
+  [9.1234, -20.9273, 4.2345, 13.1234],
+  [5.0000, 0.0000, 12.5555, -10.0000],
+  [15.3245, 8.4321, -5.3456, 18.8888],
+  [7.2345, -5.2345, 2.4321, 0.0000]
+];
+
+const normalizedData = [
+  [0.3797, 0.0000, 0.5852, 0.6944],
+  [0.0000, 0.7027, 1.0000, 0.0000],
+  [1.0000, 1.0000, 0.0000, 1.0000],
+  [0.2507, 0.4371, 0.4979, 0.3721]
+];
+
+const pcaData = [
+  [0.6123, 0.2034],
+  [0.4912, 0.3321],
+  [0.9811, 0.4412],
+  [0.7324, 0.1800]
+];
+
+
   const [step, setStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [showCompletionMessage, setShowCompletionMessage] = useState(false);
 
-  const handleNext = () => {
+   const handleNext = () => {
     if (!completedSteps.includes(step)) {
       setCompletedSteps([...completedSteps, step]);
     }
@@ -33,8 +56,11 @@ export default function FeaturePreprocessing() {
     if (step < steps.length - 1) {
       setStep(step + 1);
     } else {
-      alert('Nice! All features are preprocessed and saved. Moving to model training.');
-      router.push('/hybrid/classification');
+      // Show message and redirect after 2 seconds
+      setShowCompletionMessage(true);
+      setTimeout(() => {
+        router.push('/hybrid/model-training');
+      }, 2000);
     }
   };
 
@@ -175,14 +201,16 @@ export default function FeaturePreprocessing() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[[75, 200, 38, 120], [55, 180, 45, 90], [90, 240, 30, 130], [60, 190, 35, 110]].map((row, i) => (
-                        <tr key={i}>
-                          {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">{val}</td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
+                        {originalData.map((row, i) => (
+                          <tr key={i}>
+                            {row.map((val, j) => (
+                              <td key={j} className="border px-4 py-2 text-center">
+                                {val.toFixed(4)}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                     </tbody>
                   </table>
                   <p className="text-sm font-medium mb-2">After Normalization (0 to 1):</p>
                   <table className="table-auto border-collapse w-full">
@@ -195,10 +223,12 @@ export default function FeaturePreprocessing() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[[0.6, 0.5, 0.4, 0.67], [0.2, 0.0, 1.0, 0.0], [1.0, 1.0, 0.0, 1.0], [0.33, 0.25, 0.25, 0.5]].map((row, i) => (
+                      {normalizedData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">{val}</td>
+                            <td key={j} className="border px-4 py-2 text-center">
+                              {val.toFixed(4)}
+                            </td>
                           ))}
                         </tr>
                       ))}
@@ -228,10 +258,12 @@ export default function FeaturePreprocessing() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[[0.6, 0.5, 0.4, 0.67], [0.2, 0.0, 1.0, 0.0], [1.0, 1.0, 0.0, 1.0], [0.33, 0.25, 0.25, 0.5]].map((row, i) => (
+                      {normalizedData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">{val}</td>
+                            <td key={j} className="border px-4 py-2 text-center">
+                              {val.toFixed(4)}
+                            </td>
                           ))}
                         </tr>
                       ))}
@@ -246,10 +278,12 @@ export default function FeaturePreprocessing() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[[0.83, 0.12], [0.3, -0.2], [1.2, 0.45], [0.5, 0.0]].map((row, i) => (
+                      {pcaData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">{val}</td>
+                            <td key={j} className="border px-4 py-2 text-center">
+                              {val.toFixed(4)}
+                            </td>
                           ))}
                         </tr>
                       ))}
@@ -307,9 +341,11 @@ export default function FeaturePreprocessing() {
           </div>
 
           {/* Step Description */}
-        <div className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-3/4">
+         <div className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-full">
           <p className="text-md">
-            {stepDescriptions[step]}
+            {showCompletionMessage
+              ? "🎉 Great! We completed preprocessing. Next up is Model Training..."
+              : stepDescriptions[step]}
           </p>
         </div>
       </div>
