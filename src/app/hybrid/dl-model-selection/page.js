@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function ModelSelection() {
   const router = useRouter();
@@ -57,7 +58,8 @@ const tableData = [
 
   return (
     <div className="flex flex-col items-center min-h-screen p-6 bg-gray-50">
-      <h2 className="text-2xl font-bold mb-4">Select a Deep Learning Model</h2>
+      <TopNavigation />
+      <h2 className="text-2xl font-bold mb-4 mt-20">Select a Deep Learning Model</h2>
 
       {/* Model icons */}
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
@@ -92,7 +94,7 @@ const tableData = [
       {/* Description Panel */}
       {selectedModel && !animationComplete && (
         <div className="fixed left-0 top-0 w-full sm:w-1/4 h-full bg-gray-800 text-white p-6">
-          <h3 className="text-xl font-bold mb-4">Model Description</h3>
+          <h3 className="text-xl font-bold mb-4 my-20">Model Description</h3>
           <p>{modelDescriptions[selectedModel]}</p>
           <button
             onClick={handleSelectModel}
@@ -151,7 +153,7 @@ const tableData = [
                 <thead>
                   <tr>
                     {featureColumns.map((col, idx) => (
-                      <th key={idx} className="border px-4 py-2 text-center">{col}</th>
+                      <th key={idx} className="border md:px-4 md:py-2 p-1  text-center">{col}</th>
                     ))}
                   </tr>
                 </thead>
@@ -165,7 +167,7 @@ const tableData = [
                         transition={{ delay: 3 + rowIndex * 2, duration: 1 }}
                       >
                         {row.map((value, colIndex) => (
-                          <td key={colIndex} className="border px-4 py-2 text-center">
+                          <td key={colIndex} className="border md:px-4 md:py-2 p-1 text-center">
                             {value}
                           </td>
                         ))}
@@ -184,7 +186,7 @@ const tableData = [
             transition={{ delay: 6, duration: 1 }}
           >
             <button
-              className="bg-blue-500 text-white px-8 py-3 w-full sm:w-5/6 rounded-xl mx-5 mt-20"
+              className="bg-blue-500 text-white px-8 py-3 w-full sm:w-5/6 rounded-xl mx-5 md:mt-20 my-5 cursor-pointer"
               onClick={handleNextClick}
             >
               Next

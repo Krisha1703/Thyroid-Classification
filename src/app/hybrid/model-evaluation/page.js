@@ -1,10 +1,18 @@
 "use client";
+
 import React from "react";
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
 } from "recharts";
+import TopNavigation from "@/components/TopNavigation";
 
-// Raw accuracy data
 const rawData = [
   { dl: "VGG16", ml: "Random Forest", "DDTI Binary": 90.34, "TR 12345 Binary": 98.96, "DDTI Multiclass": 89.27, "TR 12345 Multiclass": 88.89 },
   { dl: "VGG16", ml: "Decision Tree", "DDTI Binary": 90.34, "TR 12345 Binary": 95.14, "DDTI Multiclass": 84.08, "TR 12345 Multiclass": 82.90 },
@@ -16,7 +24,6 @@ const rawData = [
   { dl: "EfficientNetB0", ml: "XGBoost", "DDTI Binary": 92.13, "TR 12345 Binary": 98.35, "DDTI Multiclass": 89.08, "TR 12345 Multiclass": 87.59 },
 ];
 
-// Transform the data to group by model combo with side-by-side bars
 const data = rawData.map(item => ({
   name: `${item.dl} + ${item.ml}`,
   "DDTI Binary": item["DDTI Binary"],
@@ -27,32 +34,37 @@ const data = rawData.map(item => ({
 
 export default function ModelEvaluationChart() {
   return (
-    <div className="w-full h-[500px] mt-10 overflow-y-auto">
-      <h2 className="text-xl font-bold text-center mb-4">
-        Accuracy of DL + ML Model Combinations Across Tasks
+    <div className="w-full px-2 pt-20 pb-10">
+      <TopNavigation />
+      <h2 className="text-xl md:text-2xl font-bold text-center mb-6">
+        Accuracy of DL + ML Model Combinations
       </h2>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{ top: 10, right: 50, left: 10, bottom: 100 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="name"
-            angle={-45}
-            textAnchor="end"
-            interval={0}
-            height={80}
-          />
-          <YAxis domain={[80, 100]} />
-          <Tooltip />
-          <Legend verticalAlign="top" height={36} />
-          <Bar dataKey="DDTI Binary" fill="#3B82F6" />
-          <Bar dataKey="TR 12345 Binary" fill="#10B981" />
-          <Bar dataKey="DDTI Multiclass" fill="#F59E0B" />
-          <Bar dataKey="TR 12345 Multiclass" fill="#EF4444" />
-        </BarChart>
-      </ResponsiveContainer>
+
+      <div className="w-full h-[400px] sm:h-[500px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{ top: 20, right: 30, left: 10, bottom: 80 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="name"
+              angle={-45}
+              textAnchor="end"
+              interval={0}
+              height={90}
+              tick={{ fontSize: 12 }}
+            />
+            <YAxis domain={[80, 100]} tick={{ fontSize: 12 }} />
+            <Tooltip />
+            <Legend verticalAlign="top" wrapperStyle={{ fontSize: '12px' }} />
+            <Bar dataKey="DDTI Binary" fill="#3B82F6" />
+            <Bar dataKey="TR 12345 Binary" fill="#10B981" />
+            <Bar dataKey="DDTI Multiclass" fill="#F59E0B" />
+            <Bar dataKey="TR 12345 Multiclass" fill="#EF4444" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function HybridEntry() {
   const router = useRouter();
@@ -9,6 +10,7 @@ export default function HybridEntry() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
+      <TopNavigation />
       <h2 className="md:text-3xl text-xl font-semibold mb-6">Hybrid Modeling Flow</h2>
 
       {/* Interactive Panels */}

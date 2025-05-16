@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function DatasetSelection() {
   const router = useRouter();
@@ -35,6 +36,7 @@ export default function DatasetSelection() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-6 bg-gray-50">
+      <TopNavigation />
       <h2 className="text-2xl font-bold mb-4">Select a Dataset</h2>
 
       {/* Folder images for datasets */}
@@ -69,7 +71,7 @@ export default function DatasetSelection() {
 
       {/* Info Message */}
       {infoMessage && (
-        <div className="absolute bottom-10 bg-blue-500 text-white py-2 px-4 rounded-full shadow-md">
+        <div className="absolute bottom-10 bg-blue-500 text-white py-2 px-4 z-10 rounded-full shadow-md">
           {infoMessage}
         </div>
       )}
@@ -77,7 +79,7 @@ export default function DatasetSelection() {
       {/* Left Panel for Dataset Description */}
       {selectedDataset && (
         <div className="fixed left-0 top-0 md:w-1/4 w-2/3 h-full bg-gray-800 text-white p-6">
-          <h3 className="text-xl font-bold mb-4">Dataset Description</h3>
+          <h3 className="text-xl font-bold mb-4 my-20">Dataset Description</h3>
           <p>{datasetDescriptions[selectedDataset]}</p>
           <button
             onClick={handleSelectDataset}

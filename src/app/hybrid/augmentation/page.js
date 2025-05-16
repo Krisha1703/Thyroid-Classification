@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function Augmentation() {
   const router = useRouter();
@@ -30,7 +31,6 @@ export default function Augmentation() {
   const [completedSteps, setCompletedSteps] = useState([]);
   const [showCompletionMessage, setShowCompletionMessage] = useState(false);
 
-
   const handleNext = () => {
     if (!completedSteps.includes(step)) {
       setCompletedSteps([...completedSteps, step]);
@@ -39,7 +39,6 @@ export default function Augmentation() {
     if (step < steps.length - 1) {
       setStep(step + 1);
     } else {
-      // Show message and redirect after 2 seconds
       setShowCompletionMessage(true);
       setTimeout(() => {
         router.push('/hybrid/image-feature-extraction');
@@ -50,9 +49,7 @@ export default function Augmentation() {
   const isCurrentStepCompleted = completedSteps.includes(step);
   const scannerColor = isCurrentStepCompleted ? 'bg-green-500' : 'bg-red-500';
 
-  // Apply classNames conditionally to only add augmentation once
   let imageClass = 'rounded-lg shadow-lg object-contain transition-all duration-700';
-
   if (completedSteps.includes(0)) imageClass += ' scale-x-[-1]';
   if (completedSteps.includes(1)) imageClass += ' brightness-110';
   if (completedSteps.includes(2)) imageClass += ' rotate-2';
@@ -62,60 +59,79 @@ export default function Augmentation() {
   if (completedSteps.includes(6)) imageClass += ' scale-x-105';
 
   return (
-    <div className="flex flex-row w-full min-h-screen bg-white">
-      {/* Left: Image with scanner */}
-      <div className="w-1/2 flex items-center justify-center relative overflow-hidden">
-        <div className="relative w-[80%] h-auto transition-all duration-700">
-          <Image
-            src="/thyroid-sample.png"
-            alt="Thyroid Augmentation"
-            width={500}
-            height={500}
-            className={imageClass}
-          />
+    <div className="flex flex-col w-full min-h-screen bg-white">
+      <TopNavigation />
 
-          <div className="absolute inset-0 pointer-events-none">
-            <div className={`absolute w-full -ml-1 h-1 ${scannerColor} animate-bounce-vertical`} />
+      {/* Wrapper to conditionally layout inner content */}
+      <div className="flex flex-col w-full mt-20">
+
+        {/* Section 1: Image and Steps */}
+        <div className="flex flex-col md:flex-row w-full md:w-5/6 mx-auto">
+
+          {/* Image */}
+          <div className="w-full md:w-1/2 flex items-center justify-center relative p-4">
+            <div className="relative w-[90%] h-auto transition-all duration-700">
+              <Image
+                src="/thyroid-sample.png"
+                alt="Thyroid Augmentation"
+                width={500}
+                height={500}
+                className={imageClass}
+              />
+
+              <div className="absolute inset-0 pointer-events-none">
+                <div className={`absolute w-full -ml-1 h-1 ${scannerColor} animate-bounce-vertical`} />
+              </div>
+            </div>
+          </div>
+
+          {/* Steps */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center px-4 space-y-3">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Augmentation Steps</h2>
+
+            {steps.map((label, index) => (
+              <button
+                key={label}
+                onClick={() => setStep(index)}
+                className={`w-full text-left px-4 py-3 rounded-lg shadow transition-colors font-medium ${
+                  completedSteps.includes(index)
+                    ? 'bg-green-500 text-white'
+                    : index === step
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 text-gray-800'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Right: Steps and Description */}
-      <div className="w-1/2 flex flex-col items-start justify-center p-8 space-y-4">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">Augmentation Steps</h2>
+        {/* Section 2 & 3: Description and Next Button */}
+        <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-5/6 mx-auto px-4">
+          {/* Description */}
+          <div className="w-full md:my-10 mt-5">
+            <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-full">
+              <p className="text-md">
+                {showCompletionMessage
+                  ? "🎉 Great! We completed augmentation. Next up is Image Feature Extraction..."
+                  : stepDescriptions[step]}
+              </p>
+            </div>
+          </div>
 
-        {steps.map((label, index) => (
-          <button
-            key={label}
-            onClick={() => setStep(index)}
-            className={`w-full text-left px-4 py-3 rounded-lg shadow transition-colors font-medium ${
-              completedSteps.includes(index)
-                ? 'bg-green-500 text-white'
-                : index === step
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-200 text-gray-800'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-
-        {/* Step Description */}
-        <div className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-full">
-          <p className="text-md">
-            {showCompletionMessage
-              ? "🎉 Great! We completed preprocessing. Next up is Image Feature Extraction..."
-              : stepDescriptions[step]}
-          </p>
+          {/* Next Button */}
+          {!showCompletionMessage && (
+            <div className="w-full md:mt-10 my-5 md:ml-6">
+              <button
+                onClick={handleNext}
+                className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg cursor-pointer"
+              >
+                {step < steps.length - 1 ? 'Next Step' : 'Complete Augmentation'}
+              </button>
+            </div>
+          )}
         </div>
-
-        {/* Next Step Button */}
-        <button
-          onClick={handleNext}
-          className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg"
-        >
-          {step < steps.length - 1 ? 'Next Step' : 'Complete Augmentation'}
-        </button>
       </div>
 
       {/* Animation styles */}

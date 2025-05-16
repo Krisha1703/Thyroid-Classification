@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function FeaturePreprocessing() {
   const router = useRouter();
@@ -72,8 +73,9 @@ const pcaData = [
 
   return (
     <div className="flex md:flex-row flex-col w-full min-h-screen bg-white">
+      <TopNavigation />
       {/* Sidebar */}
-      <div className="w-1/2 flex items-center justify-center p-8">
+      <div className="md:w-1/2 w-full flex items-center justify-center p-4 mt-20">
         <div className="md:bg-gray-100  p-6 rounded-lg md:shadow-xl w-full max-w-md">
 
           <AnimatePresence mode="wait">
@@ -189,22 +191,22 @@ const pcaData = [
                 exit={{ opacity: 0, y: -20 }}
               >
                 <h4 className="text-lg font-semibold mb-4 text-center">Feature Normalization</h4>
-                <div className="overflow-auto rounded shadow p-4 bg-white">
+                <div className=" rounded shadow p-4 bg-white">
                   <p className="text-sm font-medium mb-2">Before Normalization:</p>
                   <table className="table-auto border-collapse w-full mb-4">
                     <thead>
                       <tr>
-                        <th className="border px-4 py-2">Feature 1</th>
-                        <th className="border px-4 py-2">Feature 2</th>
-                        <th className="border px-4 py-2">Feature 3</th>
-                        <th className="border px-4 py-2">Feature 4</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 1</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 2</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 3</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 4</th>
                       </tr>
                     </thead>
                     <tbody>
                         {originalData.map((row, i) => (
                           <tr key={i}>
                             {row.map((val, j) => (
-                              <td key={j} className="border px-4 py-2 text-center">
+                              <td key={j} className="border md:px-4 md:py-2 p-1 text-center">
                                 {val.toFixed(4)}
                               </td>
                             ))}
@@ -216,17 +218,17 @@ const pcaData = [
                   <table className="table-auto border-collapse w-full">
                     <thead>
                       <tr>
-                        <th className="border px-4 py-2">Feature 1</th>
-                        <th className="border px-4 py-2">Feature 2</th>
-                        <th className="border px-4 py-2">Feature 3</th>
-                        <th className="border px-4 py-2">Feature 4</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 1</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 2</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 3</th>
+                        <th className="border md:px-4 md:py-2 p-1">Feature 4</th>
                       </tr>
                     </thead>
                     <tbody>
                       {normalizedData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">
+                            <td key={j} className="border md:px-4 md:py-2 p-1 text-center">
                               {val.toFixed(4)}
                             </td>
                           ))}
@@ -251,17 +253,17 @@ const pcaData = [
                   <table className="table-auto border-collapse w-full mb-4">
                     <thead>
                       <tr>
-                        <th className="border px-4 py-2">F1</th>
-                        <th className="border px-4 py-2">F2</th>
-                        <th className="border px-4 py-2">F3</th>
-                        <th className="border px-4 py-2">F4</th>
+                        <th className="border md:px-4 md:py-2 p-1">F1</th>
+                        <th className="border md:px-4 md:py-2 p-1">F2</th>
+                        <th className="border md:px-4 md:py-2 p-1">F3</th>
+                        <th className="border md:px-4 md:py-2 p-1">F4</th>
                       </tr>
                     </thead>
                     <tbody>
                       {normalizedData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">
+                            <td key={j} className="border md:px-4 md:py-2 p-1 text-center">
                               {val.toFixed(4)}
                             </td>
                           ))}
@@ -273,15 +275,15 @@ const pcaData = [
                   <table className="table-auto border-collapse w-full">
                     <thead>
                       <tr>
-                        <th className="border px-4 py-2">PC1</th>
-                        <th className="border px-4 py-2">PC2</th>
+                        <th className="border md:px-4 md:py-2 p-1">PC1</th>
+                        <th className="border md:px-4 md:py-2 p-1">PC2</th>
                       </tr>
                     </thead>
                     <tbody>
                       {pcaData.map((row, i) => (
                         <tr key={i}>
                           {row.map((val, j) => (
-                            <td key={j} className="border px-4 py-2 text-center">
+                            <td key={j} className="border md:px-4 md:py-2 p-1 text-center">
                               {val.toFixed(4)}
                             </td>
                           ))}
@@ -317,8 +319,8 @@ const pcaData = [
       </div>
 
       {/* Timeline Panel */}
-      <div className="md:w-1/2 w-full flex flex-col items-center justify-center p-8 bg-gray-50">
-      <h2 className="text-3xl font-bold mb-4 text-gray-800">Feature Extraction Steps</h2>
+      <div className="md:w-1/2 w-full flex flex-col items-center justify-center p-8 ">
+      <h2 className="md:text-3xl text-2xl font-bold mb-4 text-gray-800">Feature Extraction Steps</h2>
         <ul className="space-y-4 w-full max-w-sm">
           {steps.map((s, i) => (
             <li
@@ -334,7 +336,7 @@ const pcaData = [
           <div className="mt-6 text-center">
             <button
               onClick={handleNext}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer"
             >
               {step === steps.length - 1 ? 'Finish' : 'Next Step'}
             </button>

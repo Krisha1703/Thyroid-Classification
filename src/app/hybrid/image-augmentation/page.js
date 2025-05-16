@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function ImageAugmentationFlow() {
   const router = useRouter();
@@ -20,7 +21,8 @@ export default function ImageAugmentationFlow() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
-      <h2 className="text-3xl font-semibold mb-6">Image Augmentation Flow</h2>
+      <TopNavigation />
+      <h2 className="md:text-3xl text-2xl font-semibold mb-6">Image Augmentation Flow</h2>
 
       {/* Augmentation Steps */}
       <div className="flex flex-wrap justify-center gap-4 mb-8">

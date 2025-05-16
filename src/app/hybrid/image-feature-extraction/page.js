@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function FeatureExtraction() {
   const router = useRouter();
@@ -23,7 +24,8 @@ export default function FeatureExtraction() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
-      <h2 className="text-3xl font-semibold mb-6">Feature Extraction Workflow</h2>
+      <TopNavigation />
+      <h2 className="md:text-3xl text-2xl font-semibold mb-6">Feature Extraction Workflow</h2>
 
       {/* Interactive Panels */}
       <div className="flex flex-wrap gap-4 justify-center mb-8">
