@@ -1,5 +1,5 @@
 import { colors} from '@/components/constants.js';
-// Helper to render different packet shapes per phase
+
 export default function PacketShape({ phase, x, y }) {
   const size = 12;
   const half = size / 2;
@@ -46,7 +46,7 @@ export default function PacketShape({ phase, x, y }) {
     case 'dt':
     case 'svm':
     case 'xgb':
-      // Ellipse for model nodes
+      // no packets for model nodes
       return  null;
     default:
       // Default rectangle

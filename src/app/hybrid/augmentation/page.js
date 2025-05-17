@@ -62,10 +62,7 @@ export default function Augmentation() {
     <div className="flex flex-col w-full min-h-screen bg-white">
       <TopNavigation />
 
-      {/* Wrapper to conditionally layout inner content */}
       <div className="flex flex-col w-full mt-20">
-
-        {/* Section 1: Image and Steps */}
         <div className="flex flex-col md:flex-row w-full md:w-5/6 mx-auto">
 
           {/* Image */}
@@ -107,7 +104,6 @@ export default function Augmentation() {
           </div>
         </div>
 
-        {/* Section 2 & 3: Description and Next Button */}
         <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-5/6 mx-auto px-4">
           {/* Description */}
           <div className="w-full md:my-10 mt-5">

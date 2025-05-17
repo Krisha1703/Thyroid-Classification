@@ -87,22 +87,19 @@ export default function VerticalHybridModelFlow() {
       ))}
     </svg>
 
-   
-  {/* Note Box */}
-  {/* Note Box */}
-{selectedNode && (
-  <div
-    className="
-      bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md
-      w-full md:w-1/3
-      md:absolute md:top-10 md:right-20 
-      mt-[-55vh] md:mt-0
-      z-10
-    "
-  >
-    <p className="text-md font-medium">{nodeDescriptions[selectedNode]}</p>
-  </div>
-)}
+    {selectedNode && (
+      <div
+        className="
+          bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md
+          w-full md:w-1/3
+          md:absolute md:top-10 md:right-20 
+          mt-[-55vh] md:mt-0
+          z-10
+        "
+      >
+        <p className="text-md font-medium">{nodeDescriptions[selectedNode]}</p>
+      </div>
+    )}
 
 
   {/* Evaluate Button */}
@@ -117,6 +114,7 @@ export default function VerticalHybridModelFlow() {
   >
     🚀 Evaluate the Model
   </button>
+  
 </div>
 
   </>

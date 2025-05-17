@@ -20,18 +20,17 @@ export default function DatasetSelection() {
 
   // Handle dataset click
   const handleDatasetClick = (dataset) => {
-    setSelectedDataset(dataset); // Set selected dataset
+    setSelectedDataset(dataset); 
   };
 
   // Handle selection of dataset
   const handleSelectDataset = () => {
-    setConfirmedDataset(selectedDataset); // Confirm the selection
+    setConfirmedDataset(selectedDataset);
     setInfoMessage(`Good job! You selected the ${selectedDataset} dataset.`);
     
-    // Automatically redirect after a short delay
     setTimeout(() => {
-      router.push('/hybrid/image-preprocessing'); // Redirect to the next page
-    }, 2000); // 2 seconds delay
+      router.push('/hybrid/image-preprocessing'); 
+    }, 2000);
   };
 
   return (
@@ -39,7 +38,6 @@ export default function DatasetSelection() {
       <TopNavigation />
       <h2 className="text-2xl font-bold mb-4">Select a Dataset</h2>
 
-      {/* Folder images for datasets */}
       <div className="flex gap-6 mb-6">
         <div
           className={`flex flex-col items-center cursor-pointer transition-all duration-300 `}

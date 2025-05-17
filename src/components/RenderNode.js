@@ -1,4 +1,3 @@
-// File: components/RenderNode.js
 import React from 'react';
 import { csvIconURL, colors } from './constants';
 

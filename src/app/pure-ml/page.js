@@ -87,37 +87,34 @@ export default function PureML() {
       ))}
     </svg>
 
-   
-  {/* Note Box */}
-  {/* Note Box */}
-{selectedNode && (
-  <div
-    className="
-      bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md
-      w-full md:w-1/3
-      md:absolute md:top-10 md:right-20 
-      mt-[-55vh] md:mt-0
-      z-10
-    "
-  >
-    <p className="text-md font-medium">{nodeDescriptions[selectedNode]}</p>
+    {selectedNode && (
+      <div
+        className="
+          bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md
+          w-full md:w-1/3
+          md:absolute md:top-10 md:right-20 
+          mt-[-55vh] md:mt-0
+          z-10
+        "
+      >
+        <p className="text-md font-medium">{nodeDescriptions[selectedNode]}</p>
+      </div>
+    )}
+
+
+    {/* Evaluate Button */}
+    <button
+      className="
+        bg-blue-600 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition-all
+        mt-4 md:mt-0
+        w-fit md:absolute md:bottom-20 md:right-10
+        mx-auto md:mx-0 block cursor-pointer
+      "
+      onClick={() => router.push('/pure-ml/model-evaluation')}
+    >
+      🚀 Evaluate the Model
+    </button>
   </div>
-)}
-
-
-  {/* Evaluate Button */}
-  <button
-    className="
-      bg-blue-600 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition-all
-      mt-4 md:mt-0
-      w-fit md:absolute md:bottom-20 md:right-10
-      mx-auto md:mx-0 block cursor-pointer
-    "
-    onClick={() => router.push('/pure-ml/model-evaluation')}
-  >
-    🚀 Evaluate the Model
-  </button>
-</div>
 
   </>
   );

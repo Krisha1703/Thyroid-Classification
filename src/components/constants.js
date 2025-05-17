@@ -1,13 +1,7 @@
-// Replace this URL with your actual CSV image or keep placeholder
 export const csvIconURL = '/csv.png'
-// Constants for animation and pipeline
 export const PACKET_COUNT = 30; // Number of packets circulating
 export const STREAM_SPEED = 0.01; // Speed of packet progress (0 to 1 per frame)
-
-
-
 export const PHASES_MODELS = ['rf', 'dt', 'svm', 'xgb'];
-
 
 // Colors for different nodes and packets
 export const colors = {

@@ -24,25 +24,24 @@ export default function FeaturePreprocessing() {
 
   const originalData = [
   [9.1234, -20.9273, 4.2345, 13.1234],
-  [5.0000, 0.0000, 12.5555, -10.0000],
-  [15.3245, 8.4321, -5.3456, 18.8888],
-  [7.2345, -5.2345, 2.4321, 0.0000]
-];
+    [5.0000, 0.0000, 12.5555, -10.0000],
+    [15.3245, 8.4321, -5.3456, 18.8888],
+    [7.2345, -5.2345, 2.4321, 0.0000]
+  ];
 
-const normalizedData = [
-  [0.3797, 0.0000, 0.5852, 0.6944],
-  [0.0000, 0.7027, 1.0000, 0.0000],
-  [1.0000, 1.0000, 0.0000, 1.0000],
-  [0.2507, 0.4371, 0.4979, 0.3721]
-];
+  const normalizedData = [
+    [0.3797, 0.0000, 0.5852, 0.6944],
+    [0.0000, 0.7027, 1.0000, 0.0000],
+    [1.0000, 1.0000, 0.0000, 1.0000],
+    [0.2507, 0.4371, 0.4979, 0.3721]
+  ];
 
-const pcaData = [
-  [0.6123, 0.2034],
-  [0.4912, 0.3321],
-  [0.9811, 0.4412],
-  [0.7324, 0.1800]
-];
-
+  const pcaData = [
+    [0.6123, 0.2034],
+    [0.4912, 0.3321],
+    [0.9811, 0.4412],
+    [0.7324, 0.1800]
+  ];
 
   const [step, setStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
@@ -57,7 +56,6 @@ const pcaData = [
     if (step < steps.length - 1) {
       setStep(step + 1);
     } else {
-      // Show message and redirect after 2 seconds
       setShowCompletionMessage(true);
       setTimeout(() => {
         router.push('/hybrid/model-training');
@@ -74,7 +72,7 @@ const pcaData = [
   return (
     <div className="flex md:flex-row flex-col w-full min-h-screen bg-white">
       <TopNavigation />
-      {/* Sidebar */}
+
       <div className="md:w-1/2 w-full flex items-center justify-center p-4 mt-20">
         <div className="md:bg-gray-100  p-6 rounded-lg md:shadow-xl w-full max-w-md">
 
@@ -318,7 +316,6 @@ const pcaData = [
         </div>
       </div>
 
-      {/* Timeline Panel */}
       <div className="md:w-1/2 w-full flex flex-col items-center justify-center p-8 ">
       <h2 className="md:text-3xl text-2xl font-bold mb-4 text-gray-800">Feature Extraction Steps</h2>
         <ul className="space-y-4 w-full max-w-sm">

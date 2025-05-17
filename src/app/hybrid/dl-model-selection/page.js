@@ -8,7 +8,6 @@ import TopNavigation from '@/components/TopNavigation';
 export default function ModelSelection() {
   const router = useRouter();
 
-  // State for managing selected model
   const [selectedModel, setSelectedModel] = useState(null);
   const [infoMessage, setInfoMessage] = useState("");
   const [confirmedModel, setConfirmedModel] = useState(null);
@@ -23,20 +22,18 @@ export default function ModelSelection() {
   // Feature columns for the table
   const featureColumns = ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'];
 
-const tableData = [
-  [9.1234, -0.19764, 3.76413, -4.0419],
-  [0.69834, 12.2761, -5.61532, 14.1486],
-  [-8.8867, 0.32418, 0.1294, -0.29985],
-  [0.94721, -10.1512, 7.77051, 21.0215],
-  [0.70291, -3.14786, 4.6384, 0.64827],
-];
-
-
+  const tableData = [
+    [9.1234, -0.19764, 3.76413, -4.0419],
+    [0.69834, 12.2761, -5.61532, 14.1486],
+    [-8.8867, 0.32418, 0.1294, -0.29985],
+    [0.94721, -10.1512, 7.77051, 21.0215],
+    [0.70291, -3.14786, 4.6384, 0.64827],
+  ];
 
   // Handle model click
   const handleModelClick = (model) => {
     setSelectedModel(model);
-    setAnimationComplete(false); // Reset animation state
+    setAnimationComplete(false);
   };
 
   // Handle model selection confirmation
@@ -44,15 +41,12 @@ const tableData = [
     setConfirmedModel(selectedModel);
     setInfoMessage(`✅ You selected the ${selectedModel} model.`);
 
-    // Trigger animation to show image to table transition
     setTimeout(() => {
       setAnimationComplete(true);
-    }, 1000); // Wait for the animation to run
+    }, 1000);
   };
 
-  // Handle redirect on "Next" button click
   const handleNextClick = () => {
-    // Redirect after clicking the next button
     router.push('/hybrid/feature-extraction');
   };
 
@@ -61,7 +55,6 @@ const tableData = [
       <TopNavigation />
       <h2 className="text-2xl font-bold mb-4 mt-20">Select a Deep Learning Model</h2>
 
-      {/* Model icons */}
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
         <div
           className="flex flex-col items-center cursor-pointer transition-all duration-300"
@@ -115,7 +108,7 @@ const tableData = [
           transition={{ duration: 1 }}
         >
           <div className="flex flex-col sm:flex-row justify-between items-start w-full max-w-5xl">
-            {/* Left Side: Image */}
+
             <div className="w-full sm:w-1/2 relative">
               <Image
                 src="/thyroid-sample.png" 
@@ -125,7 +118,6 @@ const tableData = [
                 className="rounded-lg shadow-md"
               />
 
-              {/* Red Scanner Line */}
               <motion.div
                 className="absolute top-0 left-0 w-5/6 -ml-2 h-1 bg-red-500"
                 animate={{ y: ['0%', '4000%'] }}
@@ -137,7 +129,6 @@ const tableData = [
               />
             </div>
 
-            {/* Right Side: Empty Table filling with data */}
             <motion.div
               className="w-full sm:w-1/2 overflow-hidden mt-6 sm:mt-0"
               initial={{ opacity: 0 }}
@@ -158,7 +149,7 @@ const tableData = [
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Animation: Filling Table Rows */}
+                 
                   {tableData.map((row, rowIndex) => (
                       <motion.tr
                         key={rowIndex}

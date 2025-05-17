@@ -3,13 +3,8 @@ import {PHASES_MODELS, nodes} from '@/components/constants.js';
 
 // Component representing a moving packet in the pipeline
 export default function PhasePacket({ phase, progress, id }) {
-  // Calculate x,y position depending on phase and progress (0 to 1)
-  // We'll use linear interpolation between nodes per phase
 
-  // Helper for linear interpolation
   const lerp = (start, end, t) => start + (end - start) * t;
-
-  // Add slight horizontal jitter for better visibility (avoid overlap)
   const jitter = ((id % 5) - 2) * 5;
 
   let x = 0,

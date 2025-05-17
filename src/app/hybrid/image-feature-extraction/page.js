@@ -27,7 +27,6 @@ export default function FeatureExtraction() {
       <TopNavigation />
       <h2 className="md:text-3xl text-2xl font-semibold mb-6">Feature Extraction Workflow</h2>
 
-      {/* Interactive Panels */}
       <div className="flex flex-wrap gap-4 justify-center mb-8">
         {panelOptions.map((panel) => (
           <motion.div
@@ -42,7 +41,6 @@ export default function FeatureExtraction() {
         ))}
       </div>
 
-      {/* Panel Content */}
       <div className="w-full max-w-3xl">
         {activePanel === 'image-load' && (
           <motion.div className="bg-white p-6 rounded-lg shadow-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -87,7 +85,6 @@ export default function FeatureExtraction() {
         )}
       </div>
 
-      {/* Final Navigation */}
       <button
         className="bg-blue-600 text-white px-6 py-3 rounded-xl mt-8 cursor-pointer shadow-lg hover:bg-blue-700 transition-all"
         onClick={() => router.push('/hybrid/dl-model-selection')}

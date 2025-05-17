@@ -57,13 +57,10 @@ export default function Preprocessing() {
     <div className="flex flex-col md:flex-row w-full min-h-screen bg-white">
       <TopNavigation />
 
-      {/* Wrapper to conditionally layout inner content */}
       <div className="flex flex-col w-full mt-20">
 
-        {/* Section 1: Image and Steps (Horizontal on small screens, side-by-side on md+) */}
         <div className="flex flex-col md:flex-row w-full md:w-5/6 mx-auto">
 
-          {/* Image */}
           <div className="w-full md:w-1/2 flex items-center justify-center relative p-4">
             <div className="relative w-[90%] h-auto transition-all duration-700">
               <Image
@@ -103,7 +100,7 @@ export default function Preprocessing() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-5/6 mx-auto  px-4">
-          {/* Section 2: Description */}
+          {/* Description */}
           <div className="w-full md:mt-10 mt-5">
             <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-md w-full">
               <p className="text-md">

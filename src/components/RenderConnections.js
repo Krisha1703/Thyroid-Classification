@@ -1,4 +1,3 @@
-// File: components/RenderConnections.js
 import React from 'react';
 import { nodes, colors } from './constants';
 

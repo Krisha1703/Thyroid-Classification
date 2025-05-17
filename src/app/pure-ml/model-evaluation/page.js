@@ -22,7 +22,7 @@ const data = [
   { model: "Decision Tree", accuracy: 88.24 },
 ];
 
-// Unique colors for each model
+
 const colors = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
 
 export default function PureMLBinaryChart() {

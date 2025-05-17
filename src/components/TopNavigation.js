@@ -8,7 +8,7 @@ export default function TopNavigation() {
 
   return (
     <div className="w-full flex justify-between items-center px-4 py-3 bg-white shadow-md fixed top-0 left-0 z-50">
-      {/* 🏠 Home Button (Top Left) */}
+      {/* 🏠 Home Button */}
       <button
         onClick={() => router.push("/")}
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 cursor-pointer transition text-3xl"
@@ -17,7 +17,7 @@ export default function TopNavigation() {
         <span role="img" aria-label="home">🏠</span>
       </button>
 
-      {/* 💬 Feedback Button (Top Right, hidden for now) */}
+      {/* 💬 Feedback Button */}
      <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

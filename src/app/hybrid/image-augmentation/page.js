@@ -39,7 +39,6 @@ export default function ImageAugmentationFlow() {
         ))}
       </div>
 
-      {/* Panel Content */}
       <div className="w-full max-w-3xl">
         {steps.map(({ id, label, description }) => (
           activePanel === id && (

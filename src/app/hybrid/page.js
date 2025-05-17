@@ -13,7 +13,6 @@ export default function HybridEntry() {
       <TopNavigation />
       <h2 className="md:text-3xl text-xl font-semibold mb-6">Hybrid Modeling Flow</h2>
 
-      {/* Interactive Panels */}
       <div className="flex md:space-x-6 space-x-0 md:space-y-0 space-y-4 mb-8 md:flex-row flex-col justify-center">
         <motion.div
           className="bg-blue-200 rounded-lg p-4 cursor-pointer"
@@ -70,7 +69,6 @@ export default function HybridEntry() {
         </motion.div>
       </div>
 
-      {/* Active Panel Content */}
       <div className="w-full max-w-3xl">
         {activePanel === 'dataset' && (
           <motion.div

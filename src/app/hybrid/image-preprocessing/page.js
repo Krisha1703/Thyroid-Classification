@@ -6,8 +6,6 @@ import TopNavigation from '@/components/TopNavigation';
 
 export default function ImagePreprocessing() {
   const router = useRouter();
-
-  // State to handle which panel is active
   const [activePanel, setActivePanel] = useState(null);
 
   return (
@@ -15,9 +13,7 @@ export default function ImagePreprocessing() {
       <TopNavigation />
       <h2 className="md:text-3xl text-xl font-semibold mb-6">Image Preprocessing Flow</h2>
 
-      {/* Interactive Panels */}
       <div className="flex md:space-x-6 md:flex-row flex-col md:space-y-0 space-x-0 space-y-4 mb-8">
-        {/* Panel for Step 1 */}
         <motion.div
           className="bg-blue-200 rounded-lg p-4 cursor-pointer"
           onClick={() => setActivePanel('image-load')}
@@ -27,7 +23,6 @@ export default function ImagePreprocessing() {
           <p className="text-center font-semibold">📂 Image Load</p>
         </motion.div>
 
-        {/* Panel for Step 2 */}
         <motion.div
           className="bg-green-200 rounded-lg p-4 cursor-pointer"
           onClick={() => setActivePanel('color-conversion')}
@@ -37,7 +32,6 @@ export default function ImagePreprocessing() {
           <p className="text-center font-semibold">🎨 Color Conversion</p>
         </motion.div>
 
-        {/* Panel for Step 3 */}
         <motion.div
           className="bg-yellow-200 rounded-lg p-4 cursor-pointer"
           onClick={() => setActivePanel('clahe')}
@@ -47,7 +41,6 @@ export default function ImagePreprocessing() {
           <p className="text-center font-semibold">🔧 CLAHE Enhancement</p>
         </motion.div>
 
-        {/* Panel for Step 4 */}
         <motion.div
           className="bg-red-200 rounded-lg p-4 cursor-pointer"
           onClick={() => setActivePanel('resize')}
@@ -58,7 +51,6 @@ export default function ImagePreprocessing() {
         </motion.div>
       </div>
 
-      {/* Active Panel Content */}
       <div className="w-full max-w-3xl">
         {activePanel === 'image-load' && (
           <motion.div

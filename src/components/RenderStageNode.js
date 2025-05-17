@@ -1,4 +1,3 @@
-// File: components/RenderStageNode.js
 import React from 'react';
 import { colors } from './constants';
 

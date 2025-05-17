@@ -1,4 +1,3 @@
-// File: components/RenderLabelNode.js
 import React from 'react';
 
 export default function RenderLabelNode({ name, x, y, color, onClick  }) {
