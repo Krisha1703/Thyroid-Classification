@@ -104,14 +104,25 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
 
 ## 📊 Model Performance (Highlights)
 
-![Best Performing Model](/public/best-model.png)
-*Best model performance comparison chart*
+<div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
 
-![Hybrid Model Results](/public/hybrid-result.png)
-*Classification report and confusion matrix from hybrid model*
+  <div style="flex: 1; min-width: 250px; text-align: center;">
+    <img src="/public/best-model.png" alt="Best Performing Model" width="100%" />
+    <p><em>Best model performance comparison chart</em></p>
+  </div>
 
-![Binary Classification (DDTI)](/public/ddti-binary-result.png)
-*DDTI dataset binary classification performance*
+  <div style="flex: 1; min-width: 250px; text-align: center;">
+    <img src="/public/hybrid-result.png" alt="Hybrid Model Results" width="100%" />
+    <p><em>Classification report and confusion matrix from hybrid model</em></p>
+  </div>
+
+  <div style="flex: 1; min-width: 250px; text-align: center;">
+    <img src="/public/ddti-binary-result.png" alt="Binary Classification (DDTI)" width="100%" />
+    <p><em>DDTI dataset binary classification performance</em></p>
+  </div>
+
+</div>
+
 
 
 * Hybrid model outperforms pure ML/DL in interpretability and class-level precision
