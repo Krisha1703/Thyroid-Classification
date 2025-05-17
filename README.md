@@ -66,7 +66,7 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
     ![Hybrid Workflow](/public/hybrid-workflow.png)
     *Hybrid feature extraction and classification pipeline*
     
-    ![Hybrid Preprocessing Pipeline](/public/hybrid-preprceesing-step.png)
+    ![Hybrid Preprocessing Pipeline](/public/hybrid-preprocessing-step.png)
     *Feature preprocessing steps visualized in the simulation*
 
     ![ML Model Training Animation](/public/ml-model-training.png)
@@ -110,7 +110,7 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
 ![Hybrid Model Results](/public/hybrid-result.png)
 *Classification report and confusion matrix from hybrid model*
 
-![Binary Classification (DDTI)](/public/ddti-binar-result.png)
+![Binary Classification (DDTI)](/public/ddti-binary-result.png)
 *DDTI dataset binary classification performance*
 
 
