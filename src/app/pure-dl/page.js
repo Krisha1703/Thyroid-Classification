@@ -2,7 +2,7 @@
 import TopNavigation from "@/components/TopNavigation"
 import UnderConstructionNotice from "@/components/UnderConstructionNotice"
 
-const pureDL = () => {
+const PureDL = () => {
   return (
     <>
         <TopNavigation />
@@ -12,4 +12,4 @@ const pureDL = () => {
   )
 }
 
-export default pureDL
+export default PureDL

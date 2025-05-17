@@ -11,7 +11,7 @@ import RenderConnections from '@/components/RenderConnections';
 import { useRouter } from 'next/navigation';
 import TopNavigation from '@/components/TopNavigation';
 
-export default function pureML() {
+export default function PureML() {
   const [packets, setPackets] = useState([]);
   const [selectedNode, setSelectedNode] = useState(null);
    const router = useRouter();
