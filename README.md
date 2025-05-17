@@ -107,17 +107,17 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
-    <img src="/public/best-model.png" alt="Best Performing Model" width="100%" />
+    <img src="/public/best-model.png" alt="Best Performing Model" width="50%" />
     <p><em>Best model performance comparison chart</em></p>
   </div>
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
-    <img src="/public/hybrid-result.png" alt="Hybrid Model Results" width="100%" />
+    <img src="/public/hybrid-result.png" alt="Hybrid Model Results" width="50%" />
     <p><em>Classification report and confusion matrix from hybrid model</em></p>
   </div>
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
-    <img src="/public/ddti-binary-result.png" alt="Binary Classification (DDTI)" width="100%" />
+    <img src="/public/ddti-binary-result.png" alt="Binary Classification (DDTI)" width="50%" />
     <p><em>DDTI dataset binary classification performance</em></p>
   </div>
 
