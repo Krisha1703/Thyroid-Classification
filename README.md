@@ -107,8 +107,8 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
-    <img src="/public/best-model.png" alt="Best Performing Model" width="50%" />
-    <p><em>Best model performance comparison chart</em></p>
+    <img src="/public/ddti-binary-result.png" alt="Binary Classification (DDTI)" width="50%" />
+    <p><em>DDTI dataset binary classification performance</em></p>
   </div>
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
@@ -117,12 +117,11 @@ An extended simulation platform was built using **Next.js, TailwindCSS, Framer M
   </div>
 
   <div style="flex: 1; min-width: 250px; text-align: center;">
-    <img src="/public/ddti-binary-result.png" alt="Binary Classification (DDTI)" width="50%" />
-    <p><em>DDTI dataset binary classification performance</em></p>
+    <img src="/public/best-model.png" alt="Best Performing Model" width="50%" />
+    <p><em>Best model performance comparison chart</em></p>
   </div>
 
 </div>
-
 
 
 * Hybrid model outperforms pure ML/DL in interpretability and class-level precision
