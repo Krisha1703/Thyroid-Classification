@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function TopNavigation() {
   const router = useRouter();
@@ -17,13 +18,16 @@ export default function TopNavigation() {
       </button>
 
       {/* 💬 Feedback Button (Top Right, hidden for now) */}
-      <button
-        onClick={() => console.log("Open Survey")}
-        className="hidden text-gray-600 hover:text-gray-800 transition cursor-pointer text-3xl"
-        aria-label="Give feedback"
-      >
-        <span role="img" aria-label="feedback">💬</span>
-      </button>
+     <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={() => router.push("https://forms.gle/ZznjZdozsHycEHLo6")}
+      className="text-sm sm:text-base font-semibold text-white bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-600 px-5 py-2 rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-700 transition-all"
+      aria-label="Give feedback"
+    >
+      📝 User Feedback
+    </motion.button>
+
     </div>
   );
 }

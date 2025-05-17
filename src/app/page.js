@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import TopNavigation from '@/components/TopNavigation';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState(null);
@@ -40,6 +41,7 @@ export default function HomePage() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 py-8">
+      <TopNavigation />
       {/* Abstract & Objective Buttons */}
       
 
